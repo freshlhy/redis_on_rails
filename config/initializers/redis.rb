@@ -1,1 +1,1 @@
-Redis.current = Redis.new(port: 9999)
+Redis.current = Redis.new(:host => 'localhost', :port => 6379)
