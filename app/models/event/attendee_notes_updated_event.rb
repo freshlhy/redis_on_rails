@@ -1,0 +1,2 @@
+class AttendeeNotesUpdatedEvent < AttendeeConferenceEvent
+end

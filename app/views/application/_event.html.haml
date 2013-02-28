@@ -1,0 +1,5 @@
+%li
+  .description= enhanced_description(event)
+  .when
+    = distance_of_time_in_words_to_now event.created_at
+    ago
