@@ -23,14 +23,13 @@
             $('#messages').delay(5000).fadeOut('slow');
 
     .header{colspan: 2}
-      -#- if current_attendee
-      -#  Signed in as #{current_attendee.email}
-      -#  [
-      -#  = link_to 'x', authentications_path, method: 'delete'
-      -#  ]
-      -#- else
-      -#  = link_to 'Sign in', '/auth/google'
-      -#  using Google
+      - if attendee_signed_in?
+        Signed in as #{current_attendee.email}
+        [
+        = link_to 'x', destroy_attendee_session_path, method: 'delete'
+        ]
+      - else
+        = link_to 'Sign in', new_attendee_session_path
     %table
       %tr
         %td{colspan: 2}
@@ -38,8 +37,8 @@
       %tr.main
         %td
           = yield
-        %td
-          %ul= render partial: "event", collection: events
+        -#%td
+        -#  %ul= render partial: "event", collection: events
 
     #footer
       Prepared for RailsConf2012 by
