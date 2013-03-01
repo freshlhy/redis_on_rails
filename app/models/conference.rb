@@ -1,6 +1,7 @@
 class Conference < ActiveRecord::Base
   #include Redis::Objects
   #value :location
+  attr_accessible :name;
 
   default_scope lambda { order('name asc') }
 
