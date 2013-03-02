@@ -19,6 +19,8 @@ gem 'thin'
 
 gem 'devise'
 
+gem 'formtastic'
+
 gem 'eventmachine', '1.0.0.rc.4'
 
 
