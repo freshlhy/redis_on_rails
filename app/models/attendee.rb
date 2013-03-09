@@ -6,8 +6,10 @@ class Attendee < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :name
   # attr_accessible :title, :body
+
+  validates_presence_of :name
 
   include Followings
 
@@ -30,16 +32,6 @@ class Attendee < ActiveRecord::Base
     end
   end
 
-  def name
-    # won't work with mass-assignment
-    rdb[:name].get
-  end
-
-  def name=(n)
-    # won't work with mass-assignment
-    rdb[:name].set n
-  end
-
   def registered_for?(conference)
     conference.registered?(self)
   end
@@ -55,5 +47,6 @@ class Attendee < ActiveRecord::Base
   def self.null
     Attendee.new
   end
+
 
 end

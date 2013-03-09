@@ -23,6 +23,7 @@ class AttendeeConferenceEvent < Event
 
   def push_to_feeds
     super
+    Redis.current.zadd("events", created_at.to_i, self.id)
     attendee.rdb["events"].zadd(created_at.to_i, self.id)
     conference.rdb["events"].zadd(created_at.to_i, self.id)
   end

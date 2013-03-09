@@ -20,7 +20,7 @@
           %p.flash_message{id: name}
             = msg
           %script
-            $('#messages').delay(5000).fadeOut('slow');
+            $('#messages').delay(2000).fadeOut('slow');
 
     .header{colspan: 2}
       - if attendee_signed_in?
@@ -35,11 +35,7 @@
         %td{colspan: 2}
           %h1= link_to "Conferences Sample App", root_path
       %tr.main
-        %td
-          = yield
-        -#%td
-        -#  %ul= render partial: "event", collection: events
-
+        = yield
     #footer
       Prepared for RailsConf2012 by
       = link_to "Obie Fernandez", "http://blog.obiefernandez.com"

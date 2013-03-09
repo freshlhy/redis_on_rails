@@ -31,8 +31,8 @@ class Conference < ActiveRecord::Base
       rdb[:attendee_ids].sadd(attendee.id)
       attendee.rdb[:conference_ids].sadd id
     end
-    # AttendeeRegisteredEvent.create(attendee: attendee,
-    #   conference: self, description: "#{attendee.name} registered for #{name}")
+    AttendeeRegisteredEvent.create(attendee: attendee,
+       conference: self, description: "#{attendee.name} registered for #{name}")
   end
 
   def registered?(attendee)
@@ -44,8 +44,8 @@ class Conference < ActiveRecord::Base
       rdb[:attendee_ids].srem(attendee.id)
       attendee.rdb[:conference_ids].srem id
     end
-    # AttendeeUnregisteredEvent.create(attendee: attendee,
-    #   conference: self, description: "#{attendee.name} unregistered from #{name}")
+    AttendeeUnregisteredEvent.create(attendee: attendee,
+       conference: self, description: "#{attendee.name} unregistered from #{name}")
   end
 
   def notes_for(attendee)
@@ -54,8 +54,8 @@ class Conference < ActiveRecord::Base
   
   def set_notes_for(attendee, text)
     rdb[:notes].hset(attendee.id, text)
-    # AttendeeNotesUpdatedEvent.create(attendee: attendee,
-    #  conference: self, description: "#{attendee.name} updated his notes for #{name}")
+    AttendeeNotesUpdatedEvent.create(attendee: attendee,
+      conference: self, description: "#{attendee.name} updated his notes for #{name}")
   end
 
   def to_s
